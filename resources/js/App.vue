@@ -12,6 +12,7 @@
       <v-container>
         <v-row class="d-flex justify-center">
           <v-col>
+            <Filters />
             <v-sheet
               min-height="70vh"
               rounded="lg"
@@ -28,10 +29,10 @@
 
 <script>
 import ArticlesList from './components/ArticlesList.vue'
+import Filters from './components/Filters.vue'
 export default {
   name: 'App',
-  components: {ArticlesList},
-  comments: { ArticlesList },
+  components: { ArticlesList, Filters },
   data: () => ({
     links: [
       'Dashboard',
