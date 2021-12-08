@@ -13,6 +13,10 @@ class ArticlesImportService
   public $articlesRepository;
   public $categoriesRepository;
 
+  /**
+   * @param ArticlesRepository $articlesRepository
+   * @param CategoriesRepository $categoriesRepository
+   */
   public function __construct(
     ArticlesRepository $articlesRepository,
     CategoriesRepository $categoriesRepository
@@ -22,6 +26,10 @@ class ArticlesImportService
     $this->categoriesRepository = $categoriesRepository;
   }
 
+  /**
+   * @param string $articlesData
+   * @return void
+   */
   public function import(string $articlesData)
   {
     $this->articlesData = collect(json_decode($articlesData, true));
@@ -32,6 +40,9 @@ class ArticlesImportService
     });
   }
 
+  /**
+   * @return void
+   */
   private function setCategories()
   {
     $categoriesCollection = $this->articlesData
@@ -50,6 +61,9 @@ class ArticlesImportService
     $this->categoriesRepository->insertCategories($categoriesCollection);
   }
 
+  /**
+   * @return void
+   */
   private function setMedia()
   {
     $mediaCollection = $this->articlesData
@@ -73,6 +87,9 @@ class ArticlesImportService
     $this->articlesRepository->insertMedia($mediaCollection);
   }
 
+  /**
+   * @return void
+   */
   private function setArticles()
   {
     $media = $this->articlesRepository->getMedia();
@@ -93,6 +110,12 @@ class ArticlesImportService
     }
   }
 
+  /**
+   * @param int $articleId
+   * @param array $articles
+   * @param Collection $categoriesDB
+   * @return void
+   */
   private function setArticlesCategories(int $articleId, array $articles, Collection $categoriesDB)
   {
     $categories = [];
@@ -118,6 +141,12 @@ class ArticlesImportService
     $this->articlesRepository->insertArticlesCategories($categories);
   }
 
+  /**
+   * @param int $articleId
+   * @param array $articles
+   * @param Collection $media
+   * @return void
+   */
   private function setArticlesMedia(int $articleId, array $articles, Collection $media)
   {
     if (empty($articles['media'])) return;
