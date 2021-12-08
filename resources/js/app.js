@@ -5,7 +5,7 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 
 import App from './App.vue'
-import { index } from './store/index'
+import {index} from './store/index'
 
 const app = new Vue({
     render: h => h(App),

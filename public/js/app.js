@@ -1859,14 +1859,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1895,6 +1887,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -4003,7 +3996,7 @@ var render = function () {
           _c("v-card-text", [
             _c("div", [
               _vm._v(
-                "Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating."
+                "Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.\n            "
               ),
             ]),
           ]),
@@ -4097,7 +4090,7 @@ var render = function () {
                 }),
                 _vm._v(" "),
                 _c("v-btn", { staticClass: "ml-2", attrs: { outlined: "" } }, [
-                  _vm._v("\n          Search\n        "),
+                  _vm._v("\n                    Search\n                "),
                 ]),
               ],
               1
@@ -4169,7 +4162,7 @@ var render = function () {
               attrs: { outlined: "", color: "indigo" },
               on: { click: _vm.uploadFile },
             },
-            [_vm._v("\n      Import data\n    ")]
+            [_vm._v("\n            Import data\n        ")]
           ),
           _vm._v(" "),
           _c(
@@ -4183,7 +4176,11 @@ var render = function () {
                 expression: "snackbar.show",
               },
             },
-            [_vm._v("\n      " + _vm._s(_vm.snackbar.text) + "\n    ")]
+            [
+              _vm._v(
+                "\n            " + _vm._s(_vm.snackbar.text) + "\n        "
+              ),
+            ]
           ),
         ],
         1
