@@ -11,8 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(MediaSeeder::class);
-        $this->call(CategorySeeder::class);
-        $this->call(ArticleSeeder::class);
+        //
     }
 }
