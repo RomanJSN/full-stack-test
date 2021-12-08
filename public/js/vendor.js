@@ -8144,7 +8144,7 @@ function updateDOMProps (oldVnode, vnode) {
     }
 
     if (key === 'value' && elm.tagName !== 'PROGRESS') {
-      // index value as _value as well since
+      // store value as _value as well since
       // non-string values will be stringified
       elm._value = cur;
       // avoid resetting cursor position when value is the same
@@ -8352,7 +8352,7 @@ function updateStyle (oldVnode, vnode) {
 
   var style = normalizeStyleBinding(vnode.data.style) || {};
 
-  // index normalized style under a different key for next diff
+  // store normalized style under a different key for next diff
   // make sure to clone it if it's reactive, since the user likely wants
   // to mutate it.
   vnode.data.normalizedStyle = isDef(style.__ob__)

@@ -5,6 +5,7 @@
         <v-select
           label="Categories"
           hide-details
+          dense
           outlined
           color="primary"
         ></v-select>
@@ -13,11 +14,12 @@
         <div class="d-flex align-center">
           <v-text-field
             hide-details
+            dense
             label="Search in content"
             outlined
           ></v-text-field>
-          <v-btn class="ml-2">
-            search
+          <v-btn class="ml-2" outlined>
+            Search
           </v-btn>
         </div>
       </v-col>

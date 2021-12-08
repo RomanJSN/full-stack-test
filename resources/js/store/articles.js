@@ -22,6 +22,15 @@ export default {
       } catch (e) {
 
       }
+    },
+    uploadArticlesData({ state }, file) {
+      const formData = new FormData();
+      formData.append('file', file);
+      return axios.post('api/articles/import', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
     }
   }
 }
