@@ -1,6 +1,6 @@
 <template>
     <v-row>
-        <v-col class="d-flex align-center">
+        <v-col cols="12" class="d-flex align-center">
             <v-file-input
                 v-model="file"
                 label="Import Articles JSON"
@@ -10,17 +10,17 @@
                 show-size
                 :error.sync="error"
             ></v-file-input>
+        </v-col>
+        <v-col cols="12">
             <v-btn
+                block
                 outlined
                 color="indigo"
-                class="ml-3"
+                :disabled="!file"
                 @click="uploadFile"
             >
                 Import data
             </v-btn>
-            <v-snackbar v-model="snackbar.show">
-                {{ snackbar.text }}
-            </v-snackbar>
         </v-col>
     </v-row>
 </template>
@@ -35,28 +35,13 @@ export default {
     data: () => ({
         file: null,
         error: false,
-        snackbar: {
-            show: true,
-            text: SUCCESS
-        }
     }),
     methods: {
         ...mapActions(['uploadArticlesData']),
-        notify(text) {
-            this.snackbar = {show: true, text}
-        },
-        async uploadFile() {
-            if (!this.file) {
-                this.error = true
-                setTimeout(() => this.error = false, 1000)
-                return
-            }
-            try {
-                await this.uploadArticlesData(this.file)
-                this.notify(SUCCESS)
-            } catch (e) {
-                this.notify(ERROR)
-            }
+        uploadFile() {
+            const formData = new FormData();
+            formData.append('file', this.file);
+            this.uploadArticlesData(formData)
         }
     }
 }
