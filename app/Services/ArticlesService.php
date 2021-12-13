@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Filters\ArticleFilter;
 use App\Formatters\ArticlesFormatter;
 use App\Repositories\ArticlesRepository;
 use Illuminate\Database\Eloquent\Collection;
@@ -17,10 +18,10 @@ class ArticlesService
         $this->articlesFormatter = $articlesFormatter;
     }
 
-    public function getArticles(array $inputField): Collection
+    public function getArticles(ArticleFilter $filter): Collection
     {
         return $this->articlesFormatter->getArticlesFormat(
-            $this->articlesRepository->getArticles($inputField)
+            $this->articlesRepository->getArticles($filter)
         );
     }
 }

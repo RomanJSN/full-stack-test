@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Filters\ArticleFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticlesImportRequest;
 use App\Http\Requests\ArticlesRequest;
@@ -28,13 +29,12 @@ class ArticlesController extends Controller
     }
 
     /**
-     * @param ArticlesRequest $request
      * @return JsonResponse
      */
-    public function index(ArticlesRequest $request): JsonResponse
+    public function index(ArticleFilter $filter): JsonResponse
     {
         return response()->json(
-            $this->articlesService->getArticles($request->validated())
+            $this->articlesService->getArticles($filter)
         );
     }
 
