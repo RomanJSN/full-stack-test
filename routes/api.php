@@ -20,6 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::namespace('Api')->group(function () {
     Route::post('/articles/import', 'ArticlesController@import');
-    Route::post('/articles', 'ArticlesController@index');
-    Route::post('/categories', 'CategoriesController@index');
+    Route::get('/articles', 'ArticlesController@index');
+    Route::get('/categories', 'CategoriesController@index');
 });

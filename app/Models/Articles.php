@@ -2,16 +2,30 @@
 
 namespace App\Models;
 
+use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class Articles extends Model
 {
-    protected $table = 'articles';
+    use Filterable;
+
     public const CREATED_AT = 'published';
     public const UPDATED_AT = 'modified';
-    protected $hidden = ['categoriesRelation'];
     public const WITH_MEDIA = 'media';
     public const WITH_CATEGORIES_RELATION = 'categoriesRelation';
+
+    protected $table = 'articles';
+
+    protected $hidden = ['categoriesRelation'];
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'content',
+        'status',
+        'published',
+        'modified'
+    ];
 
     public function media()
     {
