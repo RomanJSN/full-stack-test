@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ArticlesFormatter
 {
+    /**
+     * @param Collection $articlesCollection
+     * @return Collection|\Illuminate\Support\Collection
+     */
     public function getArticlesFormat(Collection $articlesCollection)
     {
         return $articlesCollection->map(function ($article) {
