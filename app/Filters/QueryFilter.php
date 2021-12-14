@@ -42,6 +42,9 @@ abstract class QueryFilter
         }
     }
 
+    /**
+     * @return array
+     */
     protected function fields(): array
     {
         $queryParams = $this->request->all();

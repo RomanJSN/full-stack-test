@@ -26,11 +26,6 @@ class ArticlesImportService
         $this->categoriesRepository = $categoriesRepository;
     }
 
-    public function getArticles()
-    {
-        return $this->articlesRepository->getArticles();
-    }
-
     /**
      * @param string $articlesData
      * @return void

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class ArticlesRepository
 {
+    /**
+     * @param ArticleFilter $filter
+     * @return mixed
+     */
     public function getArticles(ArticleFilter $filter)
     {
         return Articles::filter($filter)

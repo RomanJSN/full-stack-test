@@ -27,6 +27,9 @@ class Articles extends Model
         'modified'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function media()
     {
         return $this->belongsToMany(
@@ -37,6 +40,9 @@ class Articles extends Model
         );
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function categoriesRelation()
     {
         return $this->belongsToMany(
