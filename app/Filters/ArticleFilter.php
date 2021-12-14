@@ -18,17 +18,11 @@ class ArticleFilter extends QueryFilter
      * @param string $content
      * @return void
      */
-    public function content(string $content)
+    public function contentOrTitle(string $content)
     {
-        $this->builder->where('content', 'like', "%{$content}%");
-    }
-
-    /**
-     * @param string $title
-     * @return void
-     */
-    public function title(string $title)
-    {
-        $this->builder->where('title', 'like', "%{$title}%");
+        $this->builder->where(function($query) use ($content) {
+            $query->where('content', 'like', "%{$content}%");
+            $query->orWhere('title', 'like', "%{$content}%");
+        });
     }
 }
