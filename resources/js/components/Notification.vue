@@ -19,7 +19,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex'
 
-const { mapGetters, mapMutations } = createNamespacedHelpers('notification')
+const { mapGetters } = createNamespacedHelpers('notification')
 
 export default {
     name: 'Notification',
@@ -27,9 +27,6 @@ export default {
     computed: {
         ...mapGetters(['getMassage'])
     },
-    methods: {
-        ...mapMutations(['removeMessage'])
-    }
 }
 </script>
 

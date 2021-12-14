@@ -46,7 +46,7 @@ const {
 const { mapActions: mapActionsArticles } = createNamespacedHelpers('articles')
 
 export default {
-    name: 'Filter',
+    name: 'Filters',
     data: () => ({
         filterData: {
             categories: [],
@@ -70,7 +70,7 @@ export default {
                     params[filter] = this.filterData[filter].join(',')
                     continue
                 }
-                if (this.filterData[filter]) {
+                if (typeof this.filterData[filter] === 'string' && this.filterData[filter]) {
                     params[filter] = this.filterData[filter]
                 }
             }

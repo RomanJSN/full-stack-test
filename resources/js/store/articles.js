@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ERROR, SUCCESS} from "../constants/message"
+import { ERROR, SUCCESS } from '../constants/message'
 import { notify } from '../helpers/vuex-helpers'
 
 export default {
