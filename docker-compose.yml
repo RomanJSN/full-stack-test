@@ -31,6 +31,7 @@ services:
     volumes:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
       - ./mysql/dbdata/:/var/lib/mysql/
+      - ./mysql/testing-db.sql:/docker-entrypoint-initdb.d/testing-db.sql
     networks:
       - app-network
 
@@ -60,3 +61,6 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  full-stack-test:
