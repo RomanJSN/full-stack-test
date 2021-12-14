@@ -10,13 +10,11 @@ class ArticleFilter extends QueryFilter
         $this->builder->whereIn('articles_categories.category_id', $categories);
     }
 
-    public function content(string $content)
+    public function contentOrTitle(string $content)
     {
-        $this->builder->where('content', 'like', "%{$content}%");
-    }
-
-    public function title(string $title)
-    {
-        $this->builder->where('title', 'like', "%{$title}%");
+        $this->builder->where(function($query) use ($content) {
+            $query->where('content', 'like', "%{$content}%");
+            $query->orWhere('title', 'like', "%{$content}%");
+        });
     }
 }

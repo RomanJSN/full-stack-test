@@ -12,13 +12,12 @@ class ArticlesRepository
 {
     public function getArticles(ArticleFilter $filter)
     {
-        $query = Articles::filter($filter)
+        return Articles::filter($filter)
             ->with([Articles::WITH_MEDIA, Articles::WITH_CATEGORIES_RELATION])
             ->join('articles_categories', 'articles_categories.article_id', 'articles.id')
             ->select('articles.*')
-            ->groupBy('articles.id');
-
-        return $query->get();
+            ->groupBy('articles.id')
+            ->get();
     }
 
     /**

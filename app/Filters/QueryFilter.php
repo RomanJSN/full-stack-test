@@ -44,8 +44,23 @@ abstract class QueryFilter
 
     protected function fields(): array
     {
+        $queryParams = $this->request->all();
+
+        $queryParams['limit'] = $queryParams['limit'] ?? 10;
+        $queryParams['offset'] = $queryParams['offset'] ?? 0;
+
         return array_filter(
-            array_map('trim', $this->request->all())
+            array_map('trim', $queryParams)
         );
+    }
+
+    protected function limit(int $limit)
+    {
+        $this->builder->limit($limit);
+    }
+
+    protected function offset(int $offset)
+    {
+        $this->builder->offset($offset);
     }
 }

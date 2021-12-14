@@ -18,21 +18,10 @@
             <v-col cols="12">
                 <div class="d-flex align-center">
                     <v-text-field
-                        v-model="filterData.title"
+                        v-model="filterData.content_or_title"
                         hide-details
                         dense
-                        label="Search in title"
-                        outlined
-                    ></v-text-field>
-                </div>
-            </v-col>
-            <v-col cols="12">
-                <div class="d-flex align-center">
-                    <v-text-field
-                        v-model="filterData.content"
-                        hide-details
-                        dense
-                        label="Search in content"
+                        label="Search title, content"
                         outlined
                     ></v-text-field>
                 </div>
@@ -61,8 +50,7 @@ export default {
     data: () => ({
         filterData: {
             categories: [],
-            title: '',
-            content: ''
+            content_or_title: '',
         }
     }),
     computed: {

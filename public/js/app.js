@@ -2027,17 +2027,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createNamespacedHelpers"])('categories'),
@@ -2053,8 +2042,7 @@ var _createNamespacedHelp2 = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createNam
     return {
       filterData: {
         categories: [],
-        title: '',
-        content: ''
+        content_or_title: ''
       }
     };
   },
@@ -4294,40 +4282,15 @@ var render = function () {
                   attrs: {
                     "hide-details": "",
                     dense: "",
-                    label: "Search in title",
+                    label: "Search title, content",
                     outlined: "",
                   },
                   model: {
-                    value: _vm.filterData.title,
+                    value: _vm.filterData.content_or_title,
                     callback: function ($$v) {
-                      _vm.$set(_vm.filterData, "title", $$v)
+                      _vm.$set(_vm.filterData, "content_or_title", $$v)
                     },
-                    expression: "filterData.title",
-                  },
-                }),
-              ],
-              1
-            ),
-          ]),
-          _vm._v(" "),
-          _c("v-col", { attrs: { cols: "12" } }, [
-            _c(
-              "div",
-              { staticClass: "d-flex align-center" },
-              [
-                _c("v-text-field", {
-                  attrs: {
-                    "hide-details": "",
-                    dense: "",
-                    label: "Search in content",
-                    outlined: "",
-                  },
-                  model: {
-                    value: _vm.filterData.content,
-                    callback: function ($$v) {
-                      _vm.$set(_vm.filterData, "content", $$v)
-                    },
-                    expression: "filterData.content",
+                    expression: "filterData.content_or_title",
                   },
                 }),
               ],
