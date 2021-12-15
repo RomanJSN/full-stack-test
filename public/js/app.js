@@ -2037,7 +2037,7 @@ var _createNamespacedHelp2 = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createNam
     mapActionsArticles = _createNamespacedHelp2.mapActions;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Filter',
+  name: 'Filters',
   data: function data() {
     return {
       filterData: {
@@ -2060,7 +2060,7 @@ var _createNamespacedHelp2 = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createNam
           continue;
         }
 
-        if (this.filterData[filter]) {
+        if (typeof this.filterData[filter] === 'string' && this.filterData[filter]) {
           params[filter] = this.filterData[filter];
         }
       }
@@ -2109,16 +2109,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createNamespacedHelpers"])('notification'),
-    mapGetters = _createNamespacedHelp.mapGetters,
-    mapMutations = _createNamespacedHelp.mapMutations;
+    mapGetters = _createNamespacedHelp.mapGetters;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Notification',
   data: function data() {
     return {};
   },
-  computed: _objectSpread({}, mapGetters(['getMassage'])),
-  methods: _objectSpread({}, mapMutations(['removeMessage']))
+  computed: _objectSpread({}, mapGetters(['getMassage']))
 });
 
 /***/ }),
