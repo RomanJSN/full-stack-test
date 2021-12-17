@@ -21,5 +21,7 @@ mix.extend( 'i18n', function( webpackConfig, ...args ) {
     )
 } );
 
-mix.i18n().js('resources/js/app.js', 'public/js').extract(['vue'])
-    .sass('resources/sass/app.scss', 'public/css');
+// mix.i18n().js('resources/js/app.js', 'public/js').extract(['vue'])
+//     .sass('resources/sass/app.scss', 'public/css');
+
+mix.react('resources/react/index.js', 'public/react')
