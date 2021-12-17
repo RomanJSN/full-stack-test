@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,9 @@ Route::namespace('Api')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('login', 'AuthController@login');
         Route::post('register', 'AuthController@register');
+        Route::get('/redirect', 'AuthController@getRedirect');
+        Route::get('/callback', 'AuthController@callback');
+        Route::post('/callback', 'AuthController@socialize');
     });
 
     Route::middleware('auth:api')

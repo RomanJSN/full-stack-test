@@ -7,7 +7,6 @@
                     color="red"
                     text
                     v-bind="attrs"
-                    @click="removeMessage"
                 >
                     Close
                 </v-btn>

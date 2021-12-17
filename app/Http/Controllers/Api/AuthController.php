@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -88,6 +90,46 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function socialize()
+    {
+        $userSocialite = Socialite::driver('google')->stateless()->user();
+
+        if (!$user = User::where('email', $userSocialite->getEmail())->first()) {
+            $user = new User();
+            $user->name = $userSocialite->getName();
+            $user->email = $userSocialite->getEmail();
+            $user->password = Hash::make('google');
+            $user->save();
+        }
+
+        return $this->respondWithToken(JWTAuth::fromUser($user));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function callback()
+    {
+        $query = http_build_query(request()->all());
+        return redirect('/#/callback?'.$query);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getRedirect()
+    {
+        return response()->json([
+            'redirect_url' => Socialite::driver('google')
+                ->stateless()
+                ->redirect()
+                ->getTargetUrl()
         ]);
     }
 }

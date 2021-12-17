@@ -67,38 +67,69 @@
                 >
                     {{ $t('sign-up') }}
                 </v-btn>
+                <v-card-actions>
+                    Войти с помощью
+                    <v-btn
+                        large
+                        icon
+                        @click="redirectToGoole"
+                    >
+                        <v-icon
+                            large
+                            color="red darken-2"
+                        >
+                            mdi-google
+                        </v-icon>
+                    </v-btn>
+                </v-card-actions>
             </v-form>
         </v-card-text>
     </v-card>
 </template>
 
 <script>
+import axios from 'axios';
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapActions } = createNamespacedHelpers('auth')
+const { mapActions, mapGetters } = createNamespacedHelpers('auth')
 
 export default {
     name: 'Login',
     data: () => ({
         valid: true,
-        email: 'roman.jsn@gmail.com',
+        email: '',
         emailRules: [
             v => !!v || 'E-mail is required',
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
         ],
-        password: 'Test@test123',
+        password: '',
         passwordRules: [
             v => !!v || 'Password is required',
         ],
     }),
 
+    computed: {
+      ...mapGetters(['getUser'])
+    },
+
     methods: {
-        ...mapActions(['loginUser']),
-        submit() {
-            this.loginUser({
+        ...mapActions(['loginUser', 'getUserData']),
+        async submit() {
+            if (!this.valid) return
+
+            await this.loginUser({
                 email: this.email,
                 password: this.password
             })
+            await this.getUserData()
+
+            if (this.getUser) {
+                this.$router.push({name: 'Home'})
+            }
+        },
+        async redirectToGoole() {
+            const { data } = await axios.get('http://localhost:8000/api/auth/redirect')
+            window.location = data.redirect_url
         }
     },
 }

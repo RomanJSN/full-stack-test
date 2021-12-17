@@ -3,7 +3,9 @@ import VueRouter from 'vue-router'
 import Login from '../pages/login'
 import Register from '../pages/register'
 import Index from '../pages/index'
-import store from "../store";
+import authenticate from '../middleware/authenticate'
+import redirectIfAuthenticated from '../middleware/redirectIfAuthenticated'
+import callback from '../middleware/callback';
 
 Vue.use(VueRouter)
 
@@ -14,14 +16,16 @@ const routes = [
         name: 'Login',
         component: Login,
         meta: {
-            layout: 'auth'
+            layout: 'auth',
+            requiresLogin: false
         }
     },
     {
         path: '/register',
         component: Register,
         meta: {
-            layout: 'auth'
+            layout: 'auth',
+            requiresLogin: false
         }
     },
     {
@@ -32,16 +36,18 @@ const routes = [
             requiresLogin: true
         }
     },
+    {
+        path: '/callback',
+        meta: {
+            layout: 'auth',
+        },
+        beforeEnter: callback
+    }
 ]
 
 const router = new VueRouter({ routes })
 
-router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresLogin) && !store.state.auth.user) {
-        next({ name: 'Login' })
-    } else {
-        next()
-    }
-})
+router.beforeEach(redirectIfAuthenticated)
+router.beforeEach(authenticate)
 
 export default router
