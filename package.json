@@ -14,6 +14,7 @@
     },
     "devDependencies": {
         "@babel/plugin-proposal-object-rest-spread": "^7.16.5",
+        "@kazupon/vue-i18n-loader": "^0.5.0",
         "@prettier/plugin-php": "^0.17.6",
         "@vue/test-utils": "^1.3.0",
         "axios": "^0.19",
@@ -34,6 +35,8 @@
     },
     "dependencies": {
         "vue": "^2.6.14",
+        "vue-i18n": "^8.26.7",
+        "vue-router": "^3.5.3",
         "vue-test-utils": "*",
         "vuetify": "^2.6.1",
         "vuex": "^3.6.2"
