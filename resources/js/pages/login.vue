@@ -75,30 +75,41 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapActions } = createNamespacedHelpers('auth')
+const { mapActions, mapGetters } = createNamespacedHelpers('auth')
 
 export default {
     name: 'Login',
     data: () => ({
         valid: true,
-        email: 'roman.jsn@gmail.com',
+        email: '',
         emailRules: [
             v => !!v || 'E-mail is required',
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
         ],
-        password: 'Test@test123',
+        password: '',
         passwordRules: [
             v => !!v || 'Password is required',
         ],
     }),
 
+    computed: {
+      ...mapGetters(['getUser'])
+    },
+
     methods: {
-        ...mapActions(['loginUser']),
-        submit() {
-            this.loginUser({
+        ...mapActions(['loginUser', 'getUserData']),
+        async submit() {
+            if (!this.valid) return
+
+            await this.loginUser({
                 email: this.email,
                 password: this.password
             })
+            await this.getUserData()
+
+            if (this.getUser) {
+                this.$router.push({name: 'Home'})
+            }
         }
     },
 }

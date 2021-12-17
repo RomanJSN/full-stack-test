@@ -21,11 +21,5 @@ export default {
     data: () => ({
         DEFAULT_LAYOUT
     }),
-    mounted() {
-        this.getUserData()
-    },
-    methods: {
-        ...mapActions(['getUserData'])
-    }
 }
 </script>
