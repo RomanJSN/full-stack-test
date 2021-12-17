@@ -67,12 +67,28 @@
                 >
                     {{ $t('sign-up') }}
                 </v-btn>
+                <v-card-actions>
+                    Войти с помощью
+                    <v-btn
+                        large
+                        icon
+                        @click="redirectToGoole"
+                    >
+                        <v-icon
+                            large
+                            color="red darken-2"
+                        >
+                            mdi-google
+                        </v-icon>
+                    </v-btn>
+                </v-card-actions>
             </v-form>
         </v-card-text>
     </v-card>
 </template>
 
 <script>
+import axios from 'axios';
 import { createNamespacedHelpers } from 'vuex';
 
 const { mapActions, mapGetters } = createNamespacedHelpers('auth')
@@ -110,6 +126,10 @@ export default {
             if (this.getUser) {
                 this.$router.push({name: 'Home'})
             }
+        },
+        async redirectToGoole() {
+            const { data } = await axios.get('http://localhost:8000/api/auth/redirect')
+            window.location = data.redirect_url
         }
     },
 }

@@ -5,6 +5,7 @@ import Register from '../pages/register'
 import Index from '../pages/index'
 import authenticate from '../middleware/authenticate'
 import redirectIfAuthenticated from '../middleware/redirectIfAuthenticated'
+import callback from '../middleware/callback';
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,13 @@ const routes = [
             requiresLogin: true
         }
     },
+    {
+        path: '/callback',
+        meta: {
+            layout: 'auth',
+        },
+        beforeEnter: callback
+    }
 ]
 
 const router = new VueRouter({ routes })

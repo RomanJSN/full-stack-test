@@ -2464,7 +2464,9 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["createName
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2551,9 +2553,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
-var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_1__["createNamespacedHelpers"])('auth'),
+
+var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_2__["createNamespacedHelpers"])('auth'),
     mapActions = _createNamespacedHelp.mapActions,
     mapGetters = _createNamespacedHelp.mapGetters;
 
@@ -2615,6 +2633,30 @@ var _createNamespacedHelp = Object(vuex__WEBPACK_IMPORTED_MODULE_1__["createName
             }
           }
         }, _callee);
+      }))();
+    },
+    redirectToGoole: function redirectToGoole() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _yield$axios$get, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://localhost:8000/api/auth/redirect');
+
+              case 2:
+                _yield$axios$get = _context2.sent;
+                data = _yield$axios$get.data;
+                window.location = data.redirect_url;
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   })
@@ -7721,6 +7763,33 @@ var render = function () {
                       "\n            "
                   ),
                 ]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _vm._v("\n                Войти с помощью\n                "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { large: "", icon: "" },
+                      on: { click: _vm.redirectToGoole },
+                    },
+                    [
+                      _c(
+                        "v-icon",
+                        { attrs: { large: "", color: "red darken-2" } },
+                        [
+                          _vm._v(
+                            "\n                        mdi-google\n                    "
+                          ),
+                        ]
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
               ),
             ],
             1
@@ -59464,6 +59533,70 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./resources/js/middleware/callback.js":
+/*!*********************************************!*\
+  !*** ./resources/js/middleware/callback.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/(function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(to, from, next) {
+    var _yield$axios$post, data;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://localhost:8000/api/auth".concat(to.fullPath));
+
+          case 3:
+            _yield$axios$post = _context.sent;
+            data = _yield$axios$post.data;
+            localStorage.setItem('Authorization', "Bearer ".concat(data.access_token));
+            next({
+              name: 'Home'
+            });
+            _context.next = 12;
+            break;
+
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](0);
+            next({
+              name: 'Login'
+            });
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 9]]);
+  }));
+
+  return function (_x, _x2, _x3) {
+    return _ref.apply(this, arguments);
+  };
+})());
+
+/***/ }),
+
 /***/ "./resources/js/middleware/redirectIfAuthenticated.js":
 /*!************************************************************!*\
   !*** ./resources/js/middleware/redirectIfAuthenticated.js ***!
@@ -59796,6 +59929,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/index */ "./resources/js/pages/index.vue");
 /* harmony import */ var _middleware_authenticate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../middleware/authenticate */ "./resources/js/middleware/authenticate.js");
 /* harmony import */ var _middleware_redirectIfAuthenticated__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../middleware/redirectIfAuthenticated */ "./resources/js/middleware/redirectIfAuthenticated.js");
+/* harmony import */ var _middleware_callback__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../middleware/callback */ "./resources/js/middleware/callback.js");
+
 
 
 
@@ -59826,6 +59961,12 @@ var routes = [{
   meta: {
     requiresLogin: true
   }
+}, {
+  path: '/callback',
+  meta: {
+    layout: 'auth'
+  },
+  beforeEnter: _middleware_callback__WEBPACK_IMPORTED_MODULE_7__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes
